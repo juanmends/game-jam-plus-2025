@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://ctm07se7ra73a"]
+[gd_scene load_steps=20 format=3 uid="uid://ctm07se7ra73a"]
 
 [ext_resource type="Script" uid="uid://bxppb6xbau418" path="res://scripts/player.gd" id="1_g2els"]
 [ext_resource type="Texture2D" uid="uid://dbyktpy81rdda" path="res://assets/player-idle.png" id="2_g2els"]
@@ -108,12 +108,11 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dqkch"]
-size = Vector2(11, 26)
+size = Vector2(14, 30)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_g2els"]
 
 [node name="Player" type="CharacterBody2D"]
-position = Vector2(0, -16)
 collision_layer = 2
 script = ExtResource("1_g2els")
 
@@ -123,14 +122,17 @@ animation = &"walk"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0.5, 2)
+scale = Vector2(1.065, 1.065)
 shape = SubResource("RectangleShape2D_dqkch")
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 target_position = Vector2(0, 22)
 
 [node name="GravityDetector" type="Area2D" parent="."]
+gravity_space_override = 3
+gravity_point = true
+gravity = 1200.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GravityDetector"]
-scale = Vector2(24, 24)
+scale = Vector2(14, 14)
 shape = SubResource("CircleShape2D_g2els")

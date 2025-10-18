@@ -1,8 +1,8 @@
 
 extends CharacterBody2D
 
-const SPEED = 100.0
-const JUMP_VELOCITY = -350.0
+const SPEED = 300.0
+const JUMP_VELOCITY = -400.0
 
 @onready var clone = preload("res://scenes/clone.tscn")
 @onready var collision_shape = $CollisionShape2D
@@ -60,14 +60,14 @@ func _physics_process(delta: float) -> void:
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var direction := Input.get_axis("move_backwards", "move_forward")
 	
-	if direction>0:
+	if direction > 0:
 		animated_sprite_2d.flip_h = false
-	elif direction<0:
+	elif direction < 0:
 		animated_sprite_2d.flip_h = true
 		
 	#Play Animations
 	if is_on_floor():
-		if direction==0:
+		if direction == 0:
 			animated_sprite_2d.play("idle")
 		else:
 			animated_sprite_2d.play("walk")

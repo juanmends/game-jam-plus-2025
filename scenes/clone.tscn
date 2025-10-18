@@ -1,45 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://ce83qmq74lgb2"]
+[gd_scene load_steps=6 format=3 uid="uid://ce83qmq74lgb2"]
 
-[ext_resource type="Texture2D" uid="uid://dr5kynaux33ln" path="res://assets/clone.png" id="1_ypstt"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_rbuo6"]
-atlas = ExtResource("1_ypstt")
-region = Rect2(0, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_51lvd"]
-atlas = ExtResource("1_ypstt")
-region = Rect2(32, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_0dm2r"]
-atlas = ExtResource("1_ypstt")
-region = Rect2(64, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_jkroa"]
-atlas = ExtResource("1_ypstt")
-region = Rect2(96, 0, 32, 32)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_ndwta"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_rbuo6")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_51lvd")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_0dm2r")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_jkroa")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
+[ext_resource type="Script" uid="uid://fnky8xpn0d66" path="res://scripts/clone.gd" id="1_51lvd"]
+[ext_resource type="Texture2D" uid="uid://bglq3ludkjhet" path="res://icon.svg" id="1_ypstt"]
+[ext_resource type="Script" uid="uid://v44dm3fvh8qp" path="res://scripts/area_2d.gd" id="2_rbuo6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ypstt"]
-size = Vector2(10, 28)
+size = Vector2(32, 32)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rbuo6"]
 
@@ -47,12 +13,12 @@ size = Vector2(10, 28)
 collision_layer = 4
 script = ExtResource("1_51lvd")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_ndwta")
-autoplay = "default"
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -9.536743e-07)
+scale = Vector2(0.245, 0.245)
+texture = ExtResource("1_ypstt")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_ypstt")
 
 [node name="GravityArea" type="Area2D" parent="."]
@@ -65,5 +31,5 @@ script = ExtResource("2_rbuo6")
 gravity_range = 320.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GravityArea"]
-scale = Vector2(26, 26)
+scale = Vector2(12, 12)
 shape = SubResource("CircleShape2D_rbuo6")
