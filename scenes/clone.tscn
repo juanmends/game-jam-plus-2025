@@ -41,7 +41,11 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ypstt"]
 size = Vector2(10, 28)
 
-[node name="AnxietyMan" type="RigidBody2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_rbuo6"]
+
+[node name="AnxietyMan" type="StaticBody2D"]
+collision_layer = 4
+script = ExtResource("1_51lvd")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_ndwta")
@@ -50,3 +54,16 @@ autoplay = "default"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_ypstt")
+
+[node name="GravityArea" type="Area2D" parent="."]
+gravity_space_override = 3
+gravity_point = true
+gravity_point_center = Vector2(0, 0)
+gravity_direction = Vector2(0, 0)
+gravity = 1200.0
+script = ExtResource("2_rbuo6")
+gravity_range = 320.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GravityArea"]
+scale = Vector2(26, 26)
+shape = SubResource("CircleShape2D_rbuo6")

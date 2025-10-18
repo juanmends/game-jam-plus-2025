@@ -110,6 +110,8 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dqkch"]
 size = Vector2(11, 26)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_g2els"]
+
 [node name="Player" type="CharacterBody2D"]
 position = Vector2(0, -16)
 collision_layer = 2
@@ -125,4 +127,10 @@ position = Vector2(0.5, 2)
 shape = SubResource("RectangleShape2D_dqkch")
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
-target_position = Vector2(0, 20)
+target_position = Vector2(0, 22)
+
+[node name="GravityDetector" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GravityDetector"]
+scale = Vector2(24, 24)
+shape = SubResource("CircleShape2D_g2els")
