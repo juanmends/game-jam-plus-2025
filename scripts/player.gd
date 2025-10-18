@@ -1,8 +1,8 @@
 
 extends CharacterBody2D
 
-const SPEED = 300.0
-const JUMP_VELOCITY = -400.0
+const SPEED = 100.0
+const JUMP_VELOCITY = -350.0
 
 @onready var clone = preload("res://scenes/clone.tscn")
 @onready var collision_shape = $CollisionShape2D
@@ -11,6 +11,8 @@ const JUMP_VELOCITY = -400.0
 @export var jump_delay = 0.2
 
 var is_preparing_jump = false
+
+@onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 
 func _prepare_and_jump():
 	is_preparing_jump = true
@@ -66,6 +68,21 @@ func _physics_process(delta: float) -> void:
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var direction := Input.get_axis("move_backwards", "move_forward")
+	
+	if direction>0:
+		animated_sprite_2d.flip_h = false
+	elif direction<0:
+		animated_sprite_2d.flip_h = true
+		
+	#Play Animations
+	if is_on_floor():
+		if direction==0:
+			animated_sprite_2d.play("idle")
+		else:
+			animated_sprite_2d.play("walk")
+	else:
+		animated_sprite_2d.play("jump")
+				
 	if direction:
 		velocity.x = direction * SPEED
 	else:
