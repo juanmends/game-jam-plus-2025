@@ -21,21 +21,19 @@ sources/0 = SubResource("TileSetAtlasSource_lnu2h")
 [node name="Game" type="Node2D" groups=["Player"]]
 
 [node name="Killzone" parent="." instance=ExtResource("3_lnu2h")]
-position = Vector2(262, -61)
+position = Vector2(70, 203)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone"]
-position = Vector2(-211, 285)
 shape = SubResource("WorldBoundaryShape2D_lbhrr")
 
 [node name="TileMap" type="TileMap" parent="."]
-position = Vector2(-1, 0)
 tile_set = SubResource("TileSet_lbhrr")
 format = 2
 layer_0/tile_data = PackedInt32Array(262126, 0, 0, 262127, 0, 0, 262128, 0, 0, 262129, 0, 0, 262130, 0, 0, 262131, 0, 0, 327667, 0, 0, 327668, 0, 0, 327669, 0, 0, 327670, 0, 0, 327671, 0, 0, 327672, 0, 0, 327673, 0, 0, 327674, 0, 0, 327675, 0, 0, 327676, 0, 0, 327677, 0, 0, 262150, 0, 0, 262151, 0, 0, 262152, 0, 0, 262153, 0, 0, 262154, 0, 0, 262155, 0, 0, 262156, 0, 0, 262157, 0, 0, 196621, 0, 0, 196622, 0, 0, 196623, 0, 0, 196624, 0, 0, 196625, 0, 0, 393213, 0, 0, 458749, 0, 0, 524285, 0, 0, 589821, 0, 0, 131063, 0, 0, 131062, 0, 0, 65531, 0, 0, 65532, 0, 0, 327686, 0, 0, 393222, 0, 0, -65534, 0, 0, 65533, 0, 0, -65536, 0, 0, -1, 0, 0, -65535, 0, 0, 65534, 0, 0, -262141, 0, 0, -327677, 0, 0, 65535, 0, 0, -196605, 0, 0, -131069, 0, 0, -65533, 0, 0)
 
 [node name="Player" parent="." groups=["Player"] instance=ExtResource("1_uwrxv")]
-position = Vector2(-146, 95)
+position = Vector2(-144, 101)
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(3, -32)
+position = Vector2(0, -35)
 position_smoothing_enabled = true
