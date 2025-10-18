@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://ce83qmq74lgb2"]
+
+[ext_resource type="Script" uid="uid://c42b7vs2vdtqu" path="res://scenes/clone.gd" id="1_rbuo6"]
+[ext_resource type="Texture2D" uid="uid://bglq3ludkjhet" path="res://icon.svg" id="1_ypstt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lbhrr"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ypstt"]
+
+[node name="AnxietyMan" type="RigidBody2D"]
+script = ExtResource("1_rbuo6")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.15820323, 0.15625001)
+texture = ExtResource("1_ypstt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -3.8146973e-06)
+shape = SubResource("RectangleShape2D_lbhrr")
+
+[node name="RepulsionArea" type="Area2D" parent="CollisionShape2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionShape2D/RepulsionArea"]
+scale = Vector2(10, 10)
+shape = SubResource("CircleShape2D_ypstt")
+
+[connection signal="body_shape_entered" from="CollisionShape2D/RepulsionArea" to="." method="_on_repulsion_area_body_shape_entered"]

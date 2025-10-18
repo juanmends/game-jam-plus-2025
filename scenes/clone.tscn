@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://ce83qmq74lgb2"]
+
+[ext_resource type="Texture2D" uid="uid://bglq3ludkjhet" path="res://icon.svg" id="1_ypstt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ypstt"]
+
+[node name="AnxietyMan" type="RigidBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -9.536743e-07)
+scale = Vector2(0.13671875, 0.13671875)
+texture = ExtResource("1_ypstt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ypstt")
