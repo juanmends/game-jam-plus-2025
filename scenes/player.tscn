@@ -126,13 +126,16 @@ animation = &"walk"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 scale = Vector2(1.065, 1.065)
 shape = SubResource("RectangleShape2D_dqkch")
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
+visible = false
 target_position = Vector2(0, 22)
 
 [node name="GravityDetector" type="Area2D" parent="."]
+visible = false
 gravity_space_override = 3
 gravity_point = true
 gravity = 1200.0
