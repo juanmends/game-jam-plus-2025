@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://ccp5s7mr21fd5"]
+
+[ext_resource type="AudioStream" uid="uid://cwqmfj4q8mygt" path="res://assets/sounds/tema_1.wav" id="1_nem58"]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer"]
+stream = ExtResource("1_nem58")
+autoplay = true

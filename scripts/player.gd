@@ -1,9 +1,13 @@
 
 extends CharacterBody2D
 
-const SPEED = 300.0
-const JUMP_VELOCITY = -400.0
+const SPEED = 200.0
+const JUMP_VELOCITY = -300.0
 
+@onready var foot: AudioStreamPlayer = $foot
+@onready var jump: AudioStreamPlayer = $jump
+@onready var clone_1: AudioStreamPlayer = $clone1
+@onready var clone_2: AudioStreamPlayer = $clone2
 @onready var clone = preload("res://scenes/clone.tscn")
 @onready var collision_shape = $CollisionShape2D
 @onready var gravity_detector = $GravityDetector
@@ -20,6 +24,7 @@ func _create_clone(is_inverse: bool):
 			cloneInstance.global_position = position
 			cloneInstance.is_inverse = is_inverse
 			PlayerVariables.clones.append(cloneInstance)
+			clone_1.play()
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -52,13 +57,18 @@ func _physics_process(delta: float) -> void:
 	# Handle jump.
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
+		jump.play()
 
 	if Input.is_action_just_pressed("ui_down") and PlayerVariables.clones.front() != null:
+		clone_2.play()
 		PlayerVariables.clones.pop_front().queue_free()
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var direction := Input.get_axis("move_backwards", "move_forward")
+	
+	if direction != 0 and (not foot.playing) and is_on_floor():
+		foot.play()
 	
 	if direction > 0:
 		animated_sprite_2d.flip_h = false
