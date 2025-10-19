@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://ce83qmq74lgb2"]
 
-[ext_resource type="Script" uid="uid://fnky8xpn0d66" path="res://scripts/clone.gd" id="1_51lvd"]
+[ext_resource type="Script" uid="uid://fnky8xpn0d66" path="res://scripts/anxiety.gd" id="1_51lvd"]
 [ext_resource type="Texture2D" uid="uid://dr5kynaux33ln" path="res://assets/clone.png" id="2_51lvd"]
 [ext_resource type="Script" uid="uid://v44dm3fvh8qp" path="res://scripts/area_2d.gd" id="2_rbuo6"]
 
@@ -61,10 +61,10 @@ gravity_space_override = 3
 gravity_point = true
 gravity_point_center = Vector2(0, 0)
 gravity_direction = Vector2(0, 0)
-gravity = 1200.0
+gravity = 1980.0
 script = ExtResource("2_rbuo6")
-gravity_range = 320.0
+gravity_range = 140.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GravityArea"]
-scale = Vector2(12, 12)
+scale = Vector2(4.57, 4.57)
 shape = SubResource("CircleShape2D_rbuo6")

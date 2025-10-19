@@ -1,6 +1,6 @@
 extends StaticBody2D
 
-var is_inverse:bool = false
+var is_inverse: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

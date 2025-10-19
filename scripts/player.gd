@@ -8,10 +8,11 @@ const JUMP_VELOCITY = -300.0
 @onready var jump: AudioStreamPlayer = $jump
 @onready var clone_1: AudioStreamPlayer = $clone1
 @onready var clone_2: AudioStreamPlayer = $clone2
-@onready var clone = preload("res://scenes/clone.tscn")
+@onready var clone = preload("res://scenes/anxiety.tscn")
 @onready var collision_shape = $CollisionShape2D
 @onready var gravity_detector = $GravityDetector
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
+@onready var timer: Timer = $Timer
 
 var extra_gravity: Vector2 = Vector2.ZERO
 var current_active_area: Vector2 = Vector2.ZERO
@@ -26,9 +27,22 @@ func _create_clone(is_inverse: bool):
 			PlayerVariables.clones.append(cloneInstance)
 			clone_1.play()
 
+func _jump() -> void:
+	velocity.y = JUMP_VELOCITY
+	jump.play()
+	
+	if current_active_area != Vector2.ZERO:
+		timer.start()
+		PlayerVariables.gravity = 1960.0
+		# print(PlayerVariables.gravity)
+
+func _on_timer_timeout() -> void:
+	PlayerVariables.gravity = 980.0
+	# print(PlayerVariables.gravity)
+
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
-	var total_gravity = get_gravity()  # Valor Default que está nas definições do Projeto
+	var total_gravity = Vector2(PlayerVariables.gravity, PlayerVariables.gravity)  # Valor Default que está nas definições do Projeto
 	extra_gravity = Vector2.ZERO
 	current_active_area = Vector2.ZERO
 
@@ -37,18 +51,22 @@ func _physics_process(delta: float) -> void:
 
 	if Input.is_action_just_pressed("trauma_dump_02"):
 		_create_clone(true)
-	
+
 	var closest_distance = INF
 	var gravity_from_closest_area = Vector2.ZERO
 	for area in gravity_detector.get_overlapping_areas():
 		if area.has_method("get_gravity_at_point"):
 			var current_distance = area.global_position.distance_to(global_position)
-			
+
 			if current_distance < closest_distance:
 				current_active_area = area.global_position
 				closest_distance = current_distance
 				gravity_from_closest_area = area.get_gravity_at_point(global_position)
-		
+
+		if area.is_in_group("Hope") and Input.is_action_just_pressed("good_dump_01"):
+			global_position = area.global_position
+
+
 	var final_gravity = total_gravity + gravity_from_closest_area
 
 	if not is_on_floor():
@@ -56,8 +74,7 @@ func _physics_process(delta: float) -> void:
 
 	# Handle jump.
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
-		jump.play()
+		_jump()
 
 	if Input.is_action_just_pressed("ui_down") and PlayerVariables.clones.front() != null:
 		clone_2.play()
@@ -69,12 +86,12 @@ func _physics_process(delta: float) -> void:
 	
 	if direction != 0 and (not foot.playing) and is_on_floor():
 		foot.play()
-	
+
 	if direction > 0:
 		animated_sprite_2d.flip_h = false
 	elif direction < 0:
 		animated_sprite_2d.flip_h = true
-		
+
 	#Play Animations
 	if is_on_floor():
 		if direction == 0:
@@ -83,11 +100,11 @@ func _physics_process(delta: float) -> void:
 			animated_sprite_2d.play("walk")
 	else:
 		animated_sprite_2d.play("jump")
-				
+
 	if direction:
-		velocity.x = direction * SPEED
+		velocity.x = direction * (SPEED)
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
+		velocity.x = move_toward(velocity.x, 0, (SPEED))
 
 	move_and_slide()
 	queue_redraw()

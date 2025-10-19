@@ -10,5 +10,4 @@ func get_gravity_at_point(point: Vector2) -> Vector2:
 	var direction = (global_position - point).normalized()
 	var distance = global_position.distance_to(point)
 	var falloff = clamp(1.0 - (distance / gravity_range), 0.0, 1.0)
-	var gravity_strength = gravity * 0.65 if orientation < 0 else gravity
-	return direction * gravity_strength * falloff * orientation
+	return direction * gravity * falloff * orientation

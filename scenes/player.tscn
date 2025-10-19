@@ -155,3 +155,8 @@ stream = ExtResource("7_ur7pv")
 
 [node name="clone2" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("8_y4r1p")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.4
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
