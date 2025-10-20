@@ -134,12 +134,12 @@ shape = SubResource("RectangleShape2D_dqkch")
 [node name="RayCast2D" type="RayCast2D" parent="."]
 target_position = Vector2(0, 22)
 
-[node name="GravityDetector" type="Area2D" parent="."]
+[node name="GravityDetector" type="Area2D" parent="." groups=["Interact"]]
 gravity_space_override = 3
 gravity_point = true
 gravity = 1200.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="GravityDetector"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GravityDetector" groups=["Interact"]]
 position = Vector2(0, 1)
 scale = Vector2(6, 6)
 shape = SubResource("CircleShape2D_g2els")

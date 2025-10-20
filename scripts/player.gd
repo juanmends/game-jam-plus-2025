@@ -85,7 +85,7 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
 		_jump()
 
-	if Input.is_action_just_pressed("ui_down") and PlayerVariables.clones.front() != null:
+	if Input.is_action_just_pressed("ui_down") and not PlayerVariables.clones.is_empty():
 		clone_2.play()
 		PlayerVariables.clones.pop_front().queue_free()
 
