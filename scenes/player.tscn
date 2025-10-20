@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://ctm07se7ra73a"]
+[gd_scene load_steps=25 format=3 uid="uid://ctm07se7ra73a"]
 
 [ext_resource type="Script" uid="uid://bxppb6xbau418" path="res://scripts/player.gd" id="1_g2els"]
 [ext_resource type="Texture2D" uid="uid://dbyktpy81rdda" path="res://assets/player-idle.png" id="2_g2els"]
@@ -116,7 +116,9 @@ size = Vector2(14, 30)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_g2els"]
 
-[node name="Player" type="CharacterBody2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_smehm"]
+
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
 collision_layer = 2
 script = ExtResource("1_g2els")
 
@@ -126,23 +128,27 @@ animation = &"walk"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 scale = Vector2(1.065, 1.065)
 shape = SubResource("RectangleShape2D_dqkch")
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
-visible = false
 target_position = Vector2(0, 22)
 
 [node name="GravityDetector" type="Area2D" parent="."]
-visible = false
 gravity_space_override = 3
 gravity_point = true
 gravity = 1200.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GravityDetector"]
-scale = Vector2(14, 14)
+position = Vector2(0, 1)
+scale = Vector2(6, 6)
 shape = SubResource("CircleShape2D_g2els")
+
+[node name="HopeView" type="Area2D" parent="." groups=["Player"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HopeView"]
+scale = Vector2(18, 18)
+shape = SubResource("CircleShape2D_smehm")
 
 [node name="foot" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_smehm")
@@ -159,7 +165,11 @@ stream = ExtResource("7_ur7pv")
 [node name="clone2" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("8_y4r1p")
 
-[node name="Timer" type="Timer" parent="."]
+[node name="JumpTimer" type="Timer" parent="."]
 wait_time = 0.4
 
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[node name="HopeTimer" type="Timer" parent="."]
+wait_time = 5.0
+
+[connection signal="timeout" from="JumpTimer" to="." method="_on_jump_timer_timeout"]
+[connection signal="timeout" from="HopeTimer" to="." method="_on_hope_timer_timeout"]

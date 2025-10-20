@@ -28,6 +28,7 @@ window/size/viewport_height=900
 [global_group]
 
 Hope="Gravity Influence Group"
+Player="Player Group"
 
 [input]
 

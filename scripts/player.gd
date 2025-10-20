@@ -12,11 +12,13 @@ const JUMP_VELOCITY = -300.0
 @onready var collision_shape = $CollisionShape2D
 @onready var gravity_detector = $GravityDetector
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
-@onready var timer: Timer = $Timer
+@onready var jump_timer: Timer = $JumpTimer
+@onready var hope_timer: Timer = $HopeTimer
 
 var extra_gravity: Vector2 = Vector2.ZERO
 var current_active_area: Vector2 = Vector2.ZERO
 var overlapping_areas = {}
+var last_hope_man
 
 func _create_clone(is_inverse: bool):
 	if is_on_floor() and PlayerVariables.clones.size() < 3:
@@ -30,15 +32,18 @@ func _create_clone(is_inverse: bool):
 func _jump() -> void:
 	velocity.y = JUMP_VELOCITY
 	jump.play()
-	
+
 	if current_active_area != Vector2.ZERO:
-		timer.start()
+		jump_timer.start()
 		PlayerVariables.gravity = 1960.0
 		# print(PlayerVariables.gravity)
 
-func _on_timer_timeout() -> void:
+func _on_jump_timer_timeout() -> void:
 	PlayerVariables.gravity = 980.0
 	# print(PlayerVariables.gravity)
+
+func _on_hope_timer_timeout() -> void:
+	last_hope_man.is_available = true
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -63,8 +68,12 @@ func _physics_process(delta: float) -> void:
 				closest_distance = current_distance
 				gravity_from_closest_area = area.get_gravity_at_point(global_position)
 
-		if area.is_in_group("Hope") and Input.is_action_just_pressed("good_dump_01"):
-			global_position = area.global_position
+		if area.is_in_group("Hope"):
+			if Input.is_action_just_pressed("good_dump_01") and area.is_available:
+				global_position = area.global_position
+				area.is_available = false
+				last_hope_man = area
+				hope_timer.start()
 
 
 	var final_gravity = total_gravity + gravity_from_closest_area

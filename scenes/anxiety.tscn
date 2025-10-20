@@ -58,14 +58,14 @@ autoplay = "default"
 shape = SubResource("RectangleShape2D_ypstt")
 
 [node name="GravityArea" type="Area2D" parent="."]
+scale = Vector2(5, 5)
 gravity_space_override = 3
 gravity_point = true
 gravity_point_center = Vector2(0, 0)
 gravity_direction = Vector2(0, 0)
-gravity = 1980.0
+gravity = 2000.0
 script = ExtResource("2_rbuo6")
-gravity_range = 140.0
+gravity_range = 150.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GravityArea"]
-scale = Vector2(4.57, 4.57)
 shape = SubResource("CircleShape2D_rbuo6")

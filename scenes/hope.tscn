@@ -1,5 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://cavuutvfm8b3v"]
+[gd_scene load_steps=9 format=3 uid="uid://cavuutvfm8b3v"]
 
+[ext_resource type="Script" uid="uid://bf4xj7huduq0m" path="res://scripts/hope.gd" id="1_w52qb"]
 [ext_resource type="Texture2D" uid="uid://dr5kynaux33ln" path="res://assets/clone.png" id="2_51lvd"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0dm2r"]
@@ -42,10 +43,20 @@ animations = [{
 radius = 80.0
 
 [node name="Hope" type="Area2D" groups=["Hope"]]
+script = ExtResource("1_w52qb")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_18bmb")
 autoplay = "default"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 13)
+scale = Vector2(0.682, 0.516)
 shape = SubResource("CircleShape2D_o17ua")
+
+[node name="Hope Timer" type="Timer" parent="."]
+wait_time = 5.0
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]
+[connection signal="timeout" from="Hope Timer" to="." method="_on_hope_timer_timeout"]
