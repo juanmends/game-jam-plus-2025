@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://wepgp1c1hcy1"]
+
+[ext_resource type="Script" uid="uid://v44dm3fvh8qp" path="res://scripts/entity/clones_components/gravity_area.gd" id="1_wn22j"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rbuo6"]
+
+[node name="GravityArea" type="Area2D"]
+scale = Vector2(5, 5)
+gravity_space_override = 3
+gravity_point = true
+gravity_point_center = Vector2(0, 0)
+gravity_direction = Vector2(0, 0)
+gravity = 2000.0
+script = ExtResource("1_wn22j")
+gravity_range = 150.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_rbuo6")

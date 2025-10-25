@@ -1,0 +1,57 @@
+[gd_scene load_steps=10 format=3 uid="uid://ce83qmq74lgb2"]
+
+[ext_resource type="Script" uid="uid://fnky8xpn0d66" path="res://scripts/entity/trauma.gd" id="1_jb04r"]
+[ext_resource type="Texture2D" uid="uid://bymltlpkifcu2" path="res://assets/animation/trauma/clone_novo.png" id="2_8vbrv"]
+[ext_resource type="PackedScene" uid="uid://wepgp1c1hcy1" path="res://scenes/entity/clones_components/gravity_area.tscn" id="2_jb04r"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o7wuv"]
+atlas = ExtResource("2_8vbrv")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_an3i7"]
+atlas = ExtResource("2_8vbrv")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_526hx"]
+atlas = ExtResource("2_8vbrv")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x7vaf"]
+atlas = ExtResource("2_8vbrv")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_18bmb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o7wuv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_an3i7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_526hx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x7vaf")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ypstt"]
+size = Vector2(32, 32)
+
+[node name="Trauma" type="StaticBody2D"]
+collision_layer = 8
+script = ExtResource("1_jb04r")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_18bmb")
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ypstt")
+
+[node name="GravityArea" parent="." instance=ExtResource("2_jb04r")]

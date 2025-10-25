@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dd20nwpvgmaow"]
+
+[ext_resource type="Script" uid="uid://dswn5rludhe1f" path="res://scripts/environment/background.gd" id="1_6e84v"]
+
+[node name="Fundo" type="Node2D"]
+script = ExtResource("1_6e84v")

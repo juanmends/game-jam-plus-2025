@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://so27edqavmuk"]
+
+[ext_resource type="Script" uid="uid://dgne5k1xgsxsw" path="res://scripts/ui/dialog/dialog_box.gd" id="1_a1akr"]
+[ext_resource type="Texture2D" uid="uid://dw762rd7nyd6v" path="res://assets/ui/Sprite-0002.png" id="2_thtts"]
+
+[node name="CaixaDialogo" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_a1akr")
+
+[node name="PainelFundo" type="TextureRect" parent="."]
+layout_mode = 0
+texture = ExtResource("2_thtts")
+
+[node name="TextoDialogo" type="Label" parent="PainelFundo"]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 12.0
+offset_right = 52.0
+offset_bottom = 35.0
+scale = Vector2(3.403281, 2.185836)
+autowrap_mode = 2
+
+[node name="TimerLetras" type="Timer" parent="."]

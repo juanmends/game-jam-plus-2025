@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://qj33wa5yho2m"]
+
+[ext_resource type="Script" uid="uid://dcvbq3txuieow" path="res://scripts/ui/dialog/dialog_trigger.gd" id="1_aa70j"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mf4ld"]
+
+[node name="TriggerDialogo" type="Area2D"]
+script = ExtResource("1_aa70j")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_mf4ld")
